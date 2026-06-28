@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { dailyPrompts } from '../data/dailyPrompts';
+import OtherTools from '../components/OtherTools';
 
 function getRandomPrompt(exclude: string): string {
   const pool = dailyPrompts.filter(p => p !== exclude);
@@ -28,6 +29,8 @@ export default function DailyPrompt() {
       <button className="btn-secondary daily-prompt-another" onClick={handleAnother}>
         different one
       </button>
+
+      <OtherTools />
     </>
   );
 }

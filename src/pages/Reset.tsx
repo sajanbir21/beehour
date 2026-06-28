@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { reflectiveQuestions } from '../data/reflectiveQuestions';
 import { soundPrompts } from '../data/soundPrompts';
 import { movementPrompts } from '../data/movementPrompts';
+import OtherTools from '../components/OtherTools';
 
 function pick<T>(arr: T[], exclude?: T): T {
   const pool = exclude !== undefined ? arr.filter(x => x !== exclude) : arr;
@@ -67,6 +68,8 @@ export default function Reset() {
           </div>
         </>
       )}
+
+      <OtherTools />
     </>
   );
 }

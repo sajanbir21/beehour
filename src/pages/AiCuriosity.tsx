@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import OtherTools from '../components/OtherTools';
 
 const FALLBACK_QUESTIONS = [
   "If this tool could ask you one question, what would you most dread answering?",
@@ -138,6 +139,8 @@ export default function AiCuriosity() {
           </div>
         </div>
       )}
+
+      <OtherTools />
     </>
   );
 }

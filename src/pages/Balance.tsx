@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import OtherTools from '../components/OtherTools';
 
 /*
  Scoring:
@@ -110,6 +111,8 @@ export default function Balance() {
         <div className="result-actions">
           <button className="btn-secondary" onClick={handleReset}>take it again</button>
         </div>
+
+        <OtherTools />
       </>
     );
   }
