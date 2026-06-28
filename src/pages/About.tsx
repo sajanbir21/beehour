@@ -20,7 +20,7 @@ export default function About() {
         </div>
         <div className="about-header-text">
           <h1 className="about-name">Sajanbir Singh</h1>
-          <p className="about-tagline">Builder. Curious person. Making things for quieter problems.</p>
+          <p className="about-tagline">Builder. Curious. Making things for quiet problems.</p>
         </div>
       </div>
 
