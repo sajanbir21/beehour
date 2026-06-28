@@ -1,30 +1,50 @@
 import { Link } from 'react-router-dom';
 
+const TOOLS = [
+  {
+    to: '/ai-mirror',
+    name: 'the ai mirror',
+    hook: 'Name an AI tool. Get back a question that\'ll stay with you.',
+    cta: 'try it →',
+  },
+  {
+    to: '/your-question',
+    name: 'your question for today',
+    hook: 'One question, written by hand. Sit with it for a minute.',
+    cta: 'get your question →',
+  },
+  {
+    to: '/how-are-you',
+    name: 'how are you, actually',
+    hook: 'Five honest questions. Find out where you really are right now.',
+    cta: 'check in →',
+  },
+  {
+    to: '/quick-reset',
+    name: 'your quick reset',
+    hook: 'One tap. Think, listen, move. Back in five minutes.',
+    cta: 'reset now →',
+  },
+];
+
 export default function Home() {
   return (
     <>
-      <div className="home-intro">
-        <h1 className="page-title">bee hour</h1>
-        <p className="home-tagline">the hour you give to yourself</p>
+      <div className="home-hero">
+        <h1 className="home-wordmark">bee hour</h1>
+        <p className="home-tagline">small tools for the hour you give to yourself</p>
       </div>
 
-      <div className="home-tools">
-        <Link to="/ai-mirror" className="tool-link">
-          <span className="tool-link-name">the ai mirror</span>
-          <span className="tool-link-desc">name an AI tool — see what it asks back about being human</span>
-        </Link>
-        <Link to="/your-question" className="tool-link">
-          <span className="tool-link-name">your question for today</span>
-          <span className="tool-link-desc">one hand-written question to sit with</span>
-        </Link>
-        <Link to="/how-are-you" className="tool-link">
-          <span className="tool-link-name">how are you, actually</span>
-          <span className="tool-link-desc">five honest questions — clarity, calm, energy</span>
-        </Link>
-        <Link to="/quick-reset" className="tool-link">
-          <span className="tool-link-name">your quick reset</span>
-          <span className="tool-link-desc">think + listen + move — your next five minutes</span>
-        </Link>
+      <div className="home-tool-grid">
+        {TOOLS.map(tool => (
+          <Link key={tool.to} to={tool.to} className="tool-card">
+            <div className="tool-card-body">
+              <h2 className="tool-card-name">{tool.name}</h2>
+              <p className="tool-card-hook">{tool.hook}</p>
+            </div>
+            <span className="tool-card-cta">{tool.cta}</span>
+          </Link>
+        ))}
       </div>
     </>
   );
