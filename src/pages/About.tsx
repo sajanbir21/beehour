@@ -2,10 +2,9 @@ export default function About() {
   return (
     <>
       <div className="about-photo-wrap">
-        {/* replace src with actual photo — drop file at public/images/founder.jpg */}
         <img
-          src="/images/founder.jpg"
-          alt="founder"
+          src="/images/sajan_photo.jpeg"
+          alt="Sajanbir Singh"
           className="about-photo"
         />
       </div>
