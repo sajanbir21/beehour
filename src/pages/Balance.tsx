@@ -1,33 +1,60 @@
 import { useState } from 'react';
 
 /*
- Scoring logic:
-   Clarity = average(Q1_clarity, Q4_selfTime mapped 0→0 / 100→100)
-   Calm    = average(Q2_calm, Q5_avoiding inverted: yes→20, no→80)
+ Scoring:
+   Clarity = avg(Q1_headClarity, Q4_selfTime: yes=100/no=0)
+   Calm    = avg(Q2_calm, Q5_avoiding inverted: yes=20/no=100)
    Energy  = Q3_energy
 
- Q4 (done something for yourself): yes=100, no=0
- Q5 (avoiding something): yes=20 (dragging on calm), no=100
+ Dominant lens = whichever of the three scores highest.
+ If all three within 12 points of each other → "balanced" result.
 */
 
 const QUESTIONS = [
-  { id: 'clarity', label: 'How clear does your head feel right now?', type: 'slider' },
-  { id: 'calm',    label: 'How calm do you feel right now?',          type: 'slider' },
-  { id: 'energy',  label: 'How much energy do you have right now?',   type: 'slider' },
-  { id: 'selfTime',  label: 'Have you done anything today just for yourself?', type: 'yesno' },
-  { id: 'avoiding',  label: 'Is there something you\'re avoiding right now?',  type: 'yesno' },
+  { id: 'clarity',  label: 'How clear does your head feel right now?',            type: 'slider' },
+  { id: 'calm',     label: 'How calm do you feel in this moment?',                 type: 'slider' },
+  { id: 'energy',   label: 'How much physical energy are you carrying right now?', type: 'slider' },
+  { id: 'selfTime', label: 'Have you done anything today that was purely for you?', type: 'yesno' },
+  { id: 'avoiding', label: 'Is there something specific you\'re avoiding right now?', type: 'yesno' },
 ] as const;
 
 type QuestionId = typeof QUESTIONS[number]['id'];
 type Answers = Partial<Record<QuestionId, number>>;
 
+const LENS_DESCRIPTORS: Record<string, { title: string; line: string }> = {
+  clarity: {
+    title: 'you\'re leading with clarity right now.',
+    line:  'Your thoughts are accessible. This might be a good moment to make a decision, start something, or have a conversation you\'ve been putting off.',
+  },
+  calm: {
+    title: 'you\'re in a calm space right now.',
+    line:  'Something has settled. Notice it — it doesn\'t always stay. This is a good time to reflect rather than act.',
+  },
+  energy: {
+    title: 'you have energy to spend right now.',
+    line:  'There\'s fuel here. The question is whether you\'re pointing it at something that matters to you.',
+  },
+  balanced: {
+    title: 'you\'re fairly balanced across all three right now.',
+    line:  'Clarity, calm, and energy are close. That\'s rarer than it sounds — it might be worth noticing.',
+  },
+};
+
 function computeScores(a: Answers) {
-  const selfTimeVal = a.selfTime ?? 50;
-  const avoidingVal = a.avoiding ?? 50;
-  const clarity = Math.round(((a.clarity ?? 50) + selfTimeVal) / 2);
-  const calm    = Math.round(((a.calm ?? 50) + avoidingVal) / 2);
+  const clarity = Math.round(((a.clarity ?? 50) + (a.selfTime ?? 50)) / 2);
+  const calm    = Math.round(((a.calm ?? 50)    + (a.avoiding ?? 50)) / 2);
   const energy  = a.energy ?? 50;
   return { clarity, calm, energy };
+}
+
+function getDominantLens(scores: ReturnType<typeof computeScores>): string {
+  const { clarity, calm, energy } = scores;
+  const max = Math.max(clarity, calm, energy);
+  const min = Math.min(clarity, calm, energy);
+  if (max - min <= 12) return 'balanced';
+  if (clarity === max) return 'clarity';
+  if (calm === max) return 'calm';
+  return 'energy';
 }
 
 export default function Balance() {
@@ -42,11 +69,8 @@ export default function Balance() {
   }
 
   function handleNext() {
-    if (step < QUESTIONS.length - 1) {
-      setStep(s => s + 1);
-    } else {
-      setDone(true);
-    }
+    if (step < QUESTIONS.length - 1) setStep(s => s + 1);
+    else setDone(true);
   }
 
   function handleBack() {
@@ -60,28 +84,31 @@ export default function Balance() {
   }
 
   const scores = computeScores(answers);
+  const dominantLens = getDominantLens(scores);
+  const descriptor = LENS_DESCRIPTORS[dominantLens];
   const currentAnswer = answers[current?.id];
   const canAdvance = currentAnswer !== undefined;
 
   if (done) {
     return (
       <>
-        <h1 className="page-title">balance</h1>
+        <h1 className="page-title">which lens?</h1>
         <p className="page-subtitle">here's where you are right now.</p>
 
         <div className="card card--dusk balance-result">
+          <p className="balance-lens-title">{descriptor.title}</p>
+          <p className="balance-lens-line">{descriptor.line}</p>
+
           <div className="balance-scores">
-            <ScoreRow label="Clarity" value={scores.clarity} />
-            <ScoreRow label="Calm"    value={scores.calm} />
-            <ScoreRow label="Energy"  value={scores.energy} />
+            <ScoreRow label="Clarity" value={scores.clarity} highlight={dominantLens === 'clarity'} />
+            <ScoreRow label="Calm"    value={scores.calm}    highlight={dominantLens === 'calm'} />
+            <ScoreRow label="Energy"  value={scores.energy}  highlight={dominantLens === 'energy'} />
           </div>
           <span className="card-watermark">beehour.app/balance</span>
         </div>
 
         <div className="result-actions">
-          <button className="btn-secondary" onClick={handleReset}>
-            take it again
-          </button>
+          <button className="btn-secondary" onClick={handleReset}>take it again</button>
         </div>
       </>
     );
@@ -89,8 +116,8 @@ export default function Balance() {
 
   return (
     <>
-      <h1 className="page-title">balance</h1>
-      <p className="page-subtitle">five questions. honest answers only.</p>
+      <h1 className="page-title">which lens?</h1>
+      <p className="page-subtitle">five honest questions. you'll know something at the end.</p>
 
       <div className="balance-progress">
         {QUESTIONS.map((_, i) => (
@@ -146,16 +173,16 @@ export default function Balance() {
           <button className="btn-secondary" onClick={handleBack}>back</button>
         )}
         <button onClick={handleNext} disabled={!canAdvance}>
-          {step === QUESTIONS.length - 1 ? 'see results' : 'next'}
+          {step === QUESTIONS.length - 1 ? 'see my lens' : 'next'}
         </button>
       </div>
     </>
   );
 }
 
-function ScoreRow({ label, value }: { label: string; value: number }) {
+function ScoreRow({ label, value, highlight }: { label: string; value: number; highlight: boolean }) {
   return (
-    <div className="score-row">
+    <div className={`score-row ${highlight ? 'score-row--highlight' : ''}`}>
       <span className="score-label">{label}</span>
       <div className="score-bar-wrap">
         <div className="score-bar" style={{ width: `${value}%` }} />

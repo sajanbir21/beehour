@@ -8,13 +8,13 @@ function pick<T>(arr: T[], exclude?: T): T {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-interface Reset {
+interface ResetSet {
   thought: string;
   sound: string;
   move: string;
 }
 
-function getNewReset(prev?: Reset): Reset {
+function getNewReset(prev?: ResetSet): ResetSet {
   return {
     thought: pick(reflectiveQuestions, prev?.thought),
     sound:   pick(soundPrompts,        prev?.sound),
@@ -23,7 +23,7 @@ function getNewReset(prev?: Reset): Reset {
 }
 
 export default function Reset() {
-  const [reset, setReset] = useState<Reset | null>(null);
+  const [reset, setReset] = useState<ResetSet | null>(null);
 
   function handleGenerate() {
     setReset(r => getNewReset(r ?? undefined));
@@ -32,18 +32,31 @@ export default function Reset() {
   return (
     <>
       <h1 className="page-title">5 minutes</h1>
-      <p className="page-subtitle">your reset for right now.</p>
+      <p className="page-subtitle">
+        {reset
+          ? 'your reset. do all three, in order, without your phone.'
+          : 'one button. three things. that\'s your next five minutes.'}
+      </p>
 
       {!reset ? (
         <button onClick={handleGenerate}>give me a reset</button>
       ) : (
         <>
           <div className="card card--dusk reset-card">
-            <ul className="reset-list">
-              <li className="reset-item">{reset.thought}</li>
-              <li className="reset-item">{reset.sound}</li>
-              <li className="reset-item">{reset.move}</li>
-            </ul>
+            <ol className="reset-list">
+              <li className="reset-item">
+                <span className="reset-marker">think</span>
+                {reset.thought}
+              </li>
+              <li className="reset-item">
+                <span className="reset-marker">listen</span>
+                {reset.sound}
+              </li>
+              <li className="reset-item">
+                <span className="reset-marker">move</span>
+                {reset.move}
+              </li>
+            </ol>
             <span className="card-watermark">beehour.app/reset</span>
           </div>
 

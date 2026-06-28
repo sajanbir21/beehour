@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Card from '../components/Card';
 import { dailyPrompts } from '../data/dailyPrompts';
 
 function getRandomPrompt(exclude: string): string {
@@ -19,14 +18,15 @@ export default function DailyPrompt() {
   return (
     <>
       <h1 className="page-title">daily prompt</h1>
-      <p className="page-subtitle">one thought. however long you need it.</p>
+      <p className="page-subtitle">one question for today. written by hand, not by AI.</p>
 
-      <div style={{ marginBottom: '20px' }}>
-        <Card question={prompt} watermark="beehour.app/daily-prompt" />
+      <div className="daily-prompt-card">
+        <p className="daily-prompt-question">{prompt}</p>
+        <p className="daily-prompt-hint">sit with it. you don't have to answer it anywhere.</p>
       </div>
 
-      <button className="btn-secondary" onClick={handleAnother}>
-        another
+      <button className="btn-secondary daily-prompt-another" onClick={handleAnother}>
+        different one
       </button>
     </>
   );

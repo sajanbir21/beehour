@@ -429,6 +429,95 @@ footer {
   }
 }
 
+/* Daily prompt tool */
+.daily-prompt-card {
+  margin-bottom: 32px;
+}
+
+.daily-prompt-question {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(1.45rem, 5vw, 2rem);
+  color: var(--ink);
+  line-height: 1.45;
+  margin-bottom: 20px;
+}
+
+.daily-prompt-hint {
+  font-size: 0.875rem;
+  color: var(--mist);
+  font-style: italic;
+}
+
+.daily-prompt-another {
+  font-size: 0.875rem;
+}
+
+/* AI curiosity tool */
+.aic-asked-label {
+  font-size: 0.8125rem;
+  color: var(--dusk);
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+
+/* Reset tool */
+.reset-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 8px;
+  counter-reset: none;
+}
+
+.reset-item {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: var(--ink);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reset-marker {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  color: var(--mist);
+  text-transform: lowercase;
+  letter-spacing: 0.06em;
+}
+
+/* Balance result enhancements */
+.balance-lens-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.balance-lens-line {
+  font-size: 0.9375rem;
+  color: var(--dusk);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.score-row--highlight .score-label {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.score-row--highlight .score-bar {
+  background: var(--ink);
+}
+
+.score-row--highlight .score-value {
+  color: var(--ink);
+}
+
 /* Balance tool */
 .balance-progress {
   display: flex;

@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-import Card from '../components/Card';
 
 const FALLBACK_QUESTIONS = [
   "If this tool could ask you one question, what would you most dread answering?",
@@ -13,6 +12,7 @@ const FALLBACK_QUESTIONS = [
 export default function AiCuriosity() {
   const [toolName, setToolName] = useState('');
   const [question, setQuestion] = useState('');
+  const [submittedTool, setSubmittedTool] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -33,6 +33,7 @@ export default function AiCuriosity() {
     setError('');
     setLoading(true);
     setQuestion('');
+    setSubmittedTool(trimmed);
 
     try {
       const res = await fetch('/.netlify/functions/ai-curiosity-card', {
@@ -60,36 +61,39 @@ export default function AiCuriosity() {
     setQuestion('');
     setError('');
     setToolName('');
+    setSubmittedTool('');
     setTimeout(() => inputRef.current?.focus(), 50);
   }
 
   return (
     <>
       <h1 className="page-title">ai curiosity</h1>
-      <p className="page-subtitle">type any AI tool. see what it asks back.</p>
+      <p className="page-subtitle">
+        name any AI tool. see what it asks back about being human.
+      </p>
 
-      <form onSubmit={handleSubmit} noValidate>
-        <div className="input-group">
-          <input
-            ref={inputRef}
-            type="text"
-            value={toolName}
-            onChange={e => setToolName(e.target.value)}
-            placeholder="e.g. ChatGPT, Midjourney, Claude…"
-            maxLength={60}
-            aria-label="AI tool name"
-            disabled={loading}
-            autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="off"
-            spellCheck={false}
-          />
-          <button type="submit" disabled={loading}>
-            ask
-          </button>
-        </div>
-        {error && <p className="error-msg" role="alert">{error}</p>}
-      </form>
+      {!question && (
+        <form onSubmit={handleSubmit} noValidate>
+          <div className="input-group">
+            <input
+              ref={inputRef}
+              type="text"
+              value={toolName}
+              onChange={e => setToolName(e.target.value)}
+              placeholder="e.g. ChatGPT, Midjourney, Claude…"
+              maxLength={60}
+              aria-label="AI tool name"
+              disabled={loading}
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck={false}
+            />
+            <button type="submit" disabled={loading}>ask</button>
+          </div>
+          {error && <p className="error-msg" role="alert">{error}</p>}
+        </form>
+      )}
 
       {loading && (
         <span className="loading-text" aria-live="polite">thinking…</span>
@@ -97,11 +101,13 @@ export default function AiCuriosity() {
 
       {question && !loading && (
         <div className="result-wrap">
-          <Card question={question} watermark="beehour.app/ai-curiosity" />
+          <p className="aic-asked-label">{submittedTool} asked back:</p>
+          <div className="card card--dusk">
+            <p className="card-question">{question}</p>
+            <span className="card-watermark">beehour.app/ai-curiosity</span>
+          </div>
           <div className="result-actions">
-            <button className="btn-secondary" onClick={handleReset}>
-              try another
-            </button>
+            <button className="btn-secondary" onClick={handleReset}>try another tool</button>
           </div>
         </div>
       )}
