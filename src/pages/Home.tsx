@@ -3,25 +3,25 @@ import { Link } from 'react-router-dom';
 const TOOLS = [
   {
     to: '/ai-mirror',
-    name: 'the ai mirror',
+    name: 'The AI Mirror',
     hook: 'Name an AI tool. Get back a question that\'ll stay with you.',
     cta: 'try it →',
   },
   {
     to: '/your-question',
-    name: 'your question for today',
+    name: 'Your Question for Today',
     hook: 'One question, written by hand. Sit with it for a minute.',
     cta: 'get your question →',
   },
   {
     to: '/how-are-you',
-    name: 'how are you, actually',
+    name: 'How Are You, Actually',
     hook: 'Five honest questions. Find out where you really are right now.',
     cta: 'check in →',
   },
   {
     to: '/quick-reset',
-    name: 'your quick reset',
+    name: 'Your Quick Reset',
     hook: 'One tap. Think, listen, move. Back in five minutes.',
     cta: 'reset now →',
   },

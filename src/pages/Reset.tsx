@@ -32,7 +32,7 @@ export default function Reset() {
 
   return (
     <>
-      <h1 className="page-title">your quick reset</h1>
+      <h1 className="page-title">Your Quick Reset</h1>
       <p className="page-subtitle">
         {reset
           ? 'Your reset. Do all three, in order, without your phone.'

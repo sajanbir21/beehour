@@ -80,7 +80,7 @@ export default function AiCuriosity() {
 
   return (
     <>
-      <h1 className="page-title">the ai mirror</h1>
+      <h1 className="page-title">The AI Mirror</h1>
       <p className="page-subtitle">
         Name any AI tool. See what it asks back about being human.
       </p>

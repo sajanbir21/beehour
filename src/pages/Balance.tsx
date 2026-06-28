@@ -93,7 +93,7 @@ export default function Balance() {
   if (done) {
     return (
       <>
-        <h1 className="page-title">how are you, actually</h1>
+        <h1 className="page-title">How Are You, Actually</h1>
         <p className="page-subtitle">Here's where you actually are right now.</p>
 
         <div className="card card--dusk balance-result">
@@ -119,7 +119,7 @@ export default function Balance() {
 
   return (
     <>
-      <h1 className="page-title">how are you, actually</h1>
+      <h1 className="page-title">How Are You, Actually</h1>
       <p className="page-subtitle">Five honest questions. You'll know something at the end.</p>
 
       <div className="balance-progress">

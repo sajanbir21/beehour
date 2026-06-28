@@ -18,7 +18,7 @@ export default function DailyPrompt() {
 
   return (
     <>
-      <h1 className="page-title">your question for today</h1>
+      <h1 className="page-title">Your Question for Today</h1>
       <p className="page-subtitle">Written by hand, not by AI.</p>
 
       <div className="daily-prompt-card">
