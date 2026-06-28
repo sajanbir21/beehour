@@ -15,18 +15,18 @@ export default function Layout({ children }: LayoutProps) {
             <Link to="/" className="nav-wordmark">bee hour</Link>
             <ul className="nav-links">
               <li>
-                <Link to="/mind" className={pathname === '/mind' ? 'nav-active' : ''}>
-                  mind
+                <Link to="/ai-curiosity" className={pathname === '/ai-curiosity' ? 'nav-active' : ''}>
+                  ai curiosity
                 </Link>
               </li>
               <li>
-                <Link to="/soul" className={pathname === '/soul' ? 'nav-active' : ''}>
-                  soul
+                <Link to="/daily-prompt" className={pathname === '/daily-prompt' ? 'nav-active' : ''}>
+                  daily prompt
                 </Link>
               </li>
-              {/* body — coming soon */}
-              <li><span className="nav-soon">body</span></li>
-              {/* balance — coming soon */}
+              {/* body reset — coming soon */}
+              <li><span className="nav-soon">body reset</span></li>
+              {/* balance quiz — coming soon */}
               <li><span className="nav-soon">balance</span></li>
             </ul>
           </div>

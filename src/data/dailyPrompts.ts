@@ -1,4 +1,4 @@
-export const soulPrompts: string[] = [
+export const dailyPrompts: string[] = [
   "What are you avoiding thinking about today?",
   "When did you last feel completely unhurried?",
   "What would you do differently if no one was watching?",

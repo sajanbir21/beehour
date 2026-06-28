@@ -9,23 +9,23 @@ export default function Home() {
       </div>
 
       <div className="home-tools">
-        <Link to="/mind" className="tool-link">
-          <span className="tool-link-name">mind</span>
+        <Link to="/ai-curiosity" className="tool-link">
+          <span className="tool-link-name">ai curiosity</span>
           <span className="tool-link-desc">what your AI tools ask back</span>
         </Link>
-        <Link to="/soul" className="tool-link">
-          <span className="tool-link-name">soul</span>
+        <Link to="/daily-prompt" className="tool-link">
+          <span className="tool-link-name">daily prompt</span>
           <span className="tool-link-desc">one thought, however long you need it</span>
         </Link>
-        {/* body — coming soon */}
+        {/* body reset — coming soon */}
         <span className="tool-link tool-link--disabled">
-          <span className="tool-link-name">body</span>
-          <span className="tool-link-desc">coming soon</span>
+          <span className="tool-link-name">body reset</span>
+          <span className="tool-link-desc">a 5-minute reset, any time — coming soon</span>
         </span>
-        {/* balance — coming soon */}
+        {/* balance quiz — coming soon */}
         <span className="tool-link tool-link--disabled">
           <span className="tool-link-name">balance</span>
-          <span className="tool-link-desc">coming soon</span>
+          <span className="tool-link-desc">a short check-in across all three — coming soon</span>
         </span>
       </div>
     </>

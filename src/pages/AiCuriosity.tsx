@@ -10,7 +10,7 @@ const FALLBACK_QUESTIONS = [
   "What would you have done with this time, ten years ago?",
 ];
 
-export default function Mind() {
+export default function AiCuriosity() {
   const [toolName, setToolName] = useState('');
   const [question, setQuestion] = useState('');
   const [loading, setLoading] = useState(false);
@@ -35,7 +35,7 @@ export default function Mind() {
     setQuestion('');
 
     try {
-      const res = await fetch('/.netlify/functions/mind-card', {
+      const res = await fetch('/.netlify/functions/ai-curiosity-card', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ toolName: trimmed }),
@@ -48,7 +48,7 @@ export default function Mind() {
 
       const data = await res.json();
       setQuestion(data.question);
-    } catch (err) {
+    } catch {
       const fallback = FALLBACK_QUESTIONS[Math.floor(Math.random() * FALLBACK_QUESTIONS.length)];
       setQuestion(fallback);
     } finally {
@@ -65,7 +65,7 @@ export default function Mind() {
 
   return (
     <>
-      <h1 className="page-title">mind</h1>
+      <h1 className="page-title">ai curiosity</h1>
       <p className="page-subtitle">type any AI tool. see what it asks back.</p>
 
       <form onSubmit={handleSubmit} noValidate>
@@ -97,7 +97,7 @@ export default function Mind() {
 
       {question && !loading && (
         <div className="result-wrap">
-          <Card question={question} watermark="beehour.app/mind" />
+          <Card question={question} watermark="beehour.app/ai-curiosity" />
           <div className="result-actions">
             <button className="btn-secondary" onClick={handleReset}>
               try another
