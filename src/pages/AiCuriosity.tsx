@@ -48,7 +48,7 @@ export default function AiCuriosity() {
     setSubmittedTool(trimmed);
 
     try {
-      const res = await fetch('/.netlify/functions/ai-curiosity-card', {
+      const res = await fetch('/api/ai-curiosity-card', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ toolName: trimmed }),
