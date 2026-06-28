@@ -17,16 +17,14 @@ export default function Home() {
           <span className="tool-link-name">daily prompt</span>
           <span className="tool-link-desc">one thought, however long you need it</span>
         </Link>
-        {/* body reset — coming soon */}
-        <span className="tool-link tool-link--disabled">
-          <span className="tool-link-name">body reset</span>
-          <span className="tool-link-desc">a 5-minute reset, any time — coming soon</span>
-        </span>
-        {/* balance quiz — coming soon */}
-        <span className="tool-link tool-link--disabled">
+        <Link to="/balance" className="tool-link">
           <span className="tool-link-name">balance</span>
-          <span className="tool-link-desc">a short check-in across all three — coming soon</span>
-        </span>
+          <span className="tool-link-desc">five questions, three scores, right now</span>
+        </Link>
+        <Link to="/reset" className="tool-link">
+          <span className="tool-link-name">5 minutes</span>
+          <span className="tool-link-desc">a small reset you can do right now</span>
+        </Link>
       </div>
     </>
   );

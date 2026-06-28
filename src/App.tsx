@@ -4,6 +4,8 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import AiCuriosity from './pages/AiCuriosity';
 import DailyPrompt from './pages/DailyPrompt';
+import Balance from './pages/Balance';
+import Reset from './pages/Reset';
 
 export default function App() {
   return (
@@ -14,6 +16,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/ai-curiosity" element={<AiCuriosity />} />
           <Route path="/daily-prompt" element={<DailyPrompt />} />
+          <Route path="/balance" element={<Balance />} />
+          <Route path="/reset" element={<Reset />} />
         </Routes>
       </Layout>
     </BrowserRouter>

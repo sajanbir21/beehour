@@ -24,10 +24,16 @@ export default function Layout({ children }: LayoutProps) {
                   daily prompt
                 </Link>
               </li>
-              {/* body reset — coming soon */}
-              <li><span className="nav-soon">body reset</span></li>
-              {/* balance quiz — coming soon */}
-              <li><span className="nav-soon">balance</span></li>
+              <li>
+                <Link to="/balance" className={pathname === '/balance' ? 'nav-active' : ''}>
+                  balance
+                </Link>
+              </li>
+              <li>
+                <Link to="/reset" className={pathname === '/reset' ? 'nav-active' : ''}>
+                  5 minutes
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
