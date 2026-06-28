@@ -19,6 +19,11 @@ export default function Layout({ children }: LayoutProps) {
                   home
                 </Link>
               </li>
+              <li>
+                <Link to="/about" className={pathname === '/about' ? 'nav-active' : ''}>
+                  about
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

@@ -470,6 +470,45 @@ footer {
   }
 }
 
+/* About page */
+.about-photo-wrap {
+  margin-bottom: 36px;
+}
+
+.about-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  filter: saturate(0.75) contrast(0.95);
+  display: block;
+}
+
+.about-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  color: var(--ink);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.about-text {
+  max-width: 520px;
+}
+
+.about-bio {
+  font-size: 1rem;
+  color: var(--ink);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.about-bio:last-child {
+  margin-bottom: 0;
+}
+
 /* Daily prompt tool */
 .daily-prompt-card {
   margin-bottom: 32px;
