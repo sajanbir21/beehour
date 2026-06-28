@@ -24,19 +24,19 @@ type Answers = Partial<Record<QuestionId, number>>;
 
 const LENS_DESCRIPTORS: Record<string, { title: string; line: string }> = {
   clarity: {
-    title: 'you\'re leading with clarity right now.',
+    title: 'You\'re leading with clarity right now.',
     line:  'Your thoughts are accessible. This might be a good moment to make a decision, start something, or have a conversation you\'ve been putting off.',
   },
   calm: {
-    title: 'you\'re in a calm space right now.',
+    title: 'You\'re in a calm space right now.',
     line:  'Something has settled. Notice it — it doesn\'t always stay. This is a good time to reflect rather than act.',
   },
   energy: {
-    title: 'you have energy to spend right now.',
+    title: 'You have energy to spend right now.',
     line:  'There\'s fuel here. The question is whether you\'re pointing it at something that matters to you.',
   },
   balanced: {
-    title: 'you\'re fairly balanced across all three right now.',
+    title: 'You\'re fairly balanced across all three right now.',
     line:  'Clarity, calm, and energy are close. That\'s rarer than it sounds — it might be worth noticing.',
   },
 };
