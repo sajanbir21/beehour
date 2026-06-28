@@ -9,6 +9,12 @@ const FALLBACK_QUESTIONS = [
   "What would you have done with this time, ten years ago?",
 ];
 
+const SUGGESTED_TOOLS = [
+  'ChatGPT', 'Claude', 'Gemini', 'Midjourney', 'Copilot',
+  'Perplexity', 'Sora', 'Runway', 'Grok', 'Notion AI',
+  'Cursor', 'ElevenLabs', 'Kling', 'Gamma', 'Synthesia',
+];
+
 export default function AiCuriosity() {
   const [toolName, setToolName] = useState('');
   const [question, setQuestion] = useState('');
@@ -17,12 +23,18 @@ export default function AiCuriosity() {
   const [error, setError] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
+  function selectSuggested(name: string) {
+    setToolName(name);
+    setError('');
+    inputRef.current?.focus();
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const trimmed = toolName.trim();
 
     if (!trimmed) {
-      setError('type the name of an AI tool first.');
+      setError('pick a tool or type one above.');
       return;
     }
     if (trimmed.length > 60) {
@@ -79,8 +91,8 @@ export default function AiCuriosity() {
               ref={inputRef}
               type="text"
               value={toolName}
-              onChange={e => setToolName(e.target.value)}
-              placeholder="e.g. ChatGPT, Midjourney, Claude…"
+              onChange={e => { setToolName(e.target.value); setError(''); }}
+              placeholder="or type any tool name…"
               maxLength={60}
               aria-label="AI tool name"
               disabled={loading}
@@ -89,8 +101,23 @@ export default function AiCuriosity() {
               autoCapitalize="off"
               spellCheck={false}
             />
-            <button type="submit" disabled={loading}>ask</button>
+            <button type="submit" disabled={loading || !toolName.trim()}>ask</button>
           </div>
+
+          <div className="aic-chips" role="group" aria-label="Popular AI tools">
+            {SUGGESTED_TOOLS.map(tool => (
+              <button
+                key={tool}
+                type="button"
+                className={`aic-chip ${toolName === tool ? 'aic-chip--selected' : ''}`}
+                onClick={() => selectSuggested(tool)}
+                disabled={loading}
+              >
+                {tool}
+              </button>
+            ))}
+          </div>
+
           {error && <p className="error-msg" role="alert">{error}</p>}
         </form>
       )}

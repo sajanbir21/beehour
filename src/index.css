@@ -454,6 +454,45 @@ footer {
 }
 
 /* AI curiosity tool */
+.aic-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+.aic-chip {
+  padding: 7px 14px;
+  border: 1px solid var(--mist);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.35);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  white-space: nowrap;
+  width: auto;
+}
+
+.aic-chip:hover:not(:disabled) {
+  border-color: var(--dusk);
+  color: var(--dusk);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.aic-chip--selected {
+  border-color: var(--ink) !important;
+  background: var(--ink) !important;
+  color: var(--paper) !important;
+}
+
+.aic-chip:focus-visible {
+  outline: 2px solid var(--dusk);
+  outline-offset: 2px;
+}
+
 .aic-asked-label {
   font-size: 0.8125rem;
   color: var(--dusk);
