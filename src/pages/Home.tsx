@@ -32,7 +32,7 @@ export default function Home() {
     <>
       <div className="home-hero">
         <h1 className="home-wordmark">bee hour</h1>
-        <p className="home-tagline">small tools for the hour you give to yourself</p>
+        <p className="home-tagline">Small tools for the hour you give to yourself</p>
       </div>
 
       <div className="home-tool-grid">

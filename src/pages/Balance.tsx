@@ -93,7 +93,7 @@ export default function Balance() {
     return (
       <>
         <h1 className="page-title">how are you, actually</h1>
-        <p className="page-subtitle">here's where you actually are right now.</p>
+        <p className="page-subtitle">Here's where you actually are right now.</p>
 
         <div className="card card--dusk balance-result">
           <p className="balance-lens-title">{descriptor.title}</p>
@@ -117,7 +117,7 @@ export default function Balance() {
   return (
     <>
       <h1 className="page-title">how are you, actually</h1>
-      <p className="page-subtitle">five honest questions. you'll know something at the end.</p>
+      <p className="page-subtitle">Five honest questions. You'll know something at the end.</p>
 
       <div className="balance-progress">
         {QUESTIONS.map((_, i) => (

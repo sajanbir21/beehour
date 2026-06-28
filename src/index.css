@@ -471,42 +471,157 @@ footer {
 }
 
 /* About page */
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 44px;
+}
+
 .about-photo-wrap {
-  margin-bottom: 36px;
+  flex-shrink: 0;
 }
 
 .about-photo {
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
-  filter: saturate(0.75) contrast(0.95);
+  filter: saturate(0.8) contrast(0.95);
   display: block;
+  box-shadow:
+    0 0 0 3px var(--paper),
+    0 0 0 5px var(--mist),
+    0 0 0 8px var(--paper),
+    0 0 0 10px var(--dusk);
+}
+
+.about-header-text {
+  flex: 1;
 }
 
 .about-name {
   font-family: 'Fraunces', serif;
   font-weight: 400;
-  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
   color: var(--ink);
-  margin-bottom: 20px;
-  line-height: 1.2;
+  margin-bottom: 8px;
+  line-height: 1.15;
 }
 
-.about-text {
+.about-tagline {
+  font-size: 0.9375rem;
+  color: var(--dusk);
+  line-height: 1.55;
+}
+
+.about-bio-section {
   max-width: 520px;
+  margin-bottom: 48px;
 }
 
 .about-bio {
   font-size: 1rem;
   color: var(--ink);
-  line-height: 1.75;
-  margin-bottom: 16px;
+  line-height: 1.8;
+  margin-bottom: 18px;
 }
 
 .about-bio:last-child {
   margin-bottom: 0;
+}
+
+.about-tools-section {
+  border-top: 1px solid var(--mist);
+  padding-top: 36px;
+}
+
+.about-tools-label {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.about-tools-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-tool-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--mist);
+  text-decoration: none;
+  color: var(--ink);
+  transition: color 0.15s;
+}
+
+.about-tool-row:last-child {
+  border-bottom: none;
+}
+
+.about-tool-row:hover {
+  color: var(--dusk);
+}
+
+.about-tool-row:focus-visible {
+  outline: 2px solid var(--dusk);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.about-tool-name {
+  font-family: 'Fraunces', serif;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.about-tool-desc {
+  font-size: 0.875rem;
+  color: var(--mist);
+  flex: 1;
+}
+
+.about-tool-arrow {
+  font-size: 0.875rem;
+  color: var(--mist);
+  transition: color 0.15s, transform 0.15s;
+  display: inline-block;
+}
+
+.about-tool-row:hover .about-tool-arrow {
+  color: var(--dusk);
+  transform: translateX(3px);
+}
+
+@media (max-width: 480px) {
+  .about-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .about-photo {
+    width: 130px;
+    height: 130px;
+  }
+
+  .about-tool-row {
+    flex-wrap: wrap;
+  }
+
+  .about-tool-desc {
+    flex-basis: 100%;
+    margin-top: 2px;
+  }
+
+  .about-tool-arrow {
+    display: none;
+  }
 }
 
 /* Daily prompt tool */

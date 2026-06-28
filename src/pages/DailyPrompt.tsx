@@ -18,11 +18,11 @@ export default function DailyPrompt() {
   return (
     <>
       <h1 className="page-title">your question for today</h1>
-      <p className="page-subtitle">written by hand, not by AI.</p>
+      <p className="page-subtitle">Written by hand, not by AI.</p>
 
       <div className="daily-prompt-card">
         <p className="daily-prompt-question">{prompt}</p>
-        <p className="daily-prompt-hint">sit with it. you don't have to answer it anywhere.</p>
+        <p className="daily-prompt-hint">Sit with it. You don't have to answer it anywhere.</p>
       </div>
 
       <button className="btn-secondary daily-prompt-another" onClick={handleAnother}>

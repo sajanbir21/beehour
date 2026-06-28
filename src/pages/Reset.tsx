@@ -34,8 +34,8 @@ export default function Reset() {
       <h1 className="page-title">your quick reset</h1>
       <p className="page-subtitle">
         {reset
-          ? 'your reset. do all three, in order, without your phone.'
-          : 'one button. three things. that\'s your next five minutes.'}
+          ? 'Your reset. Do all three, in order, without your phone.'
+          : 'One button. Three things. That\'s your next five minutes.'}
       </p>
 
       {!reset ? (
