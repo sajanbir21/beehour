@@ -92,8 +92,8 @@ export default function Balance() {
   if (done) {
     return (
       <>
-        <h1 className="page-title">which lens?</h1>
-        <p className="page-subtitle">here's where you are right now.</p>
+        <h1 className="page-title">how are you, actually</h1>
+        <p className="page-subtitle">here's where you actually are right now.</p>
 
         <div className="card card--dusk balance-result">
           <p className="balance-lens-title">{descriptor.title}</p>
@@ -104,7 +104,7 @@ export default function Balance() {
             <ScoreRow label="Calm"    value={scores.calm}    highlight={dominantLens === 'calm'} />
             <ScoreRow label="Energy"  value={scores.energy}  highlight={dominantLens === 'energy'} />
           </div>
-          <span className="card-watermark">beehour.app/balance</span>
+          <span className="card-watermark">beehour.app/how-are-you</span>
         </div>
 
         <div className="result-actions">
@@ -116,7 +116,7 @@ export default function Balance() {
 
   return (
     <>
-      <h1 className="page-title">which lens?</h1>
+      <h1 className="page-title">how are you, actually</h1>
       <p className="page-subtitle">five honest questions. you'll know something at the end.</p>
 
       <div className="balance-progress">

@@ -14,10 +14,10 @@ export default function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/ai-curiosity" element={<AiCuriosity />} />
-          <Route path="/daily-prompt" element={<DailyPrompt />} />
-          <Route path="/balance" element={<Balance />} />
-          <Route path="/reset" element={<Reset />} />
+          <Route path="/ai-mirror" element={<AiCuriosity />} />
+          <Route path="/your-question" element={<DailyPrompt />} />
+          <Route path="/how-are-you" element={<Balance />} />
+          <Route path="/quick-reset" element={<Reset />} />
         </Routes>
       </Layout>
     </BrowserRouter>

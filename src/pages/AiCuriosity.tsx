@@ -79,7 +79,7 @@ export default function AiCuriosity() {
 
   return (
     <>
-      <h1 className="page-title">ai curiosity</h1>
+      <h1 className="page-title">the ai mirror</h1>
       <p className="page-subtitle">
         name any AI tool. see what it asks back about being human.
       </p>
@@ -131,7 +131,7 @@ export default function AiCuriosity() {
           <p className="aic-asked-label">{submittedTool} asked back:</p>
           <div className="card card--dusk">
             <p className="card-question">{question}</p>
-            <span className="card-watermark">beehour.app/ai-curiosity</span>
+            <span className="card-watermark">beehour.app/ai-mirror</span>
           </div>
           <div className="result-actions">
             <button className="btn-secondary" onClick={handleReset}>try another tool</button>

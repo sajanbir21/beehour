@@ -9,21 +9,21 @@ export default function Home() {
       </div>
 
       <div className="home-tools">
-        <Link to="/ai-curiosity" className="tool-link">
-          <span className="tool-link-name">ai curiosity</span>
-          <span className="tool-link-desc">what your AI tools ask back</span>
+        <Link to="/ai-mirror" className="tool-link">
+          <span className="tool-link-name">the ai mirror</span>
+          <span className="tool-link-desc">name an AI tool — see what it asks back about being human</span>
         </Link>
-        <Link to="/daily-prompt" className="tool-link">
-          <span className="tool-link-name">daily prompt</span>
-          <span className="tool-link-desc">one thought, however long you need it</span>
+        <Link to="/your-question" className="tool-link">
+          <span className="tool-link-name">your question for today</span>
+          <span className="tool-link-desc">one hand-written question to sit with</span>
         </Link>
-        <Link to="/balance" className="tool-link">
-          <span className="tool-link-name">balance</span>
-          <span className="tool-link-desc">five questions, three scores, right now</span>
+        <Link to="/how-are-you" className="tool-link">
+          <span className="tool-link-name">how are you, actually</span>
+          <span className="tool-link-desc">five honest questions — clarity, calm, energy</span>
         </Link>
-        <Link to="/reset" className="tool-link">
-          <span className="tool-link-name">5 minutes</span>
-          <span className="tool-link-desc">a small reset you can do right now</span>
+        <Link to="/quick-reset" className="tool-link">
+          <span className="tool-link-name">your quick reset</span>
+          <span className="tool-link-desc">think + listen + move — your next five minutes</span>
         </Link>
       </div>
     </>

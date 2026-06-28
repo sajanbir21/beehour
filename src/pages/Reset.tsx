@@ -31,7 +31,7 @@ export default function Reset() {
 
   return (
     <>
-      <h1 className="page-title">5 minutes</h1>
+      <h1 className="page-title">your quick reset</h1>
       <p className="page-subtitle">
         {reset
           ? 'your reset. do all three, in order, without your phone.'
@@ -57,7 +57,7 @@ export default function Reset() {
                 {reset.move}
               </li>
             </ol>
-            <span className="card-watermark">beehour.app/reset</span>
+            <span className="card-watermark">beehour.app/quick-reset</span>
           </div>
 
           <div className="result-actions">
