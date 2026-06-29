@@ -1,14 +1,27 @@
 import { NavLink } from 'react-router-dom';
 
+const TABS = [
+  { to: '/today',    label: 'Today',    icon: '⚡' },
+  { to: '/goals',    label: 'Goals',    icon: '🎯' },
+  { to: '/habits',   label: 'Habits',   icon: '🔁' },
+  { to: '/progress', label: 'Progress', icon: '📈' },
+  { to: '/review',   label: 'Review',   icon: '📋' },
+];
+
 export default function Nav() {
   return (
-    <nav className="nav">
-      <span className="nav-wordmark">bee hour</span>
-      <ul className="nav-links">
-        <li><NavLink to="/today" className={({ isActive }) => isActive ? 'nav-link nav-link--active' : 'nav-link'}>Today</NavLink></li>
-        <li><NavLink to="/goals" className={({ isActive }) => isActive ? 'nav-link nav-link--active' : 'nav-link'}>Goals</NavLink></li>
-        <li><NavLink to="/review" className={({ isActive }) => isActive ? 'nav-link nav-link--active' : 'nav-link'}>Review</NavLink></li>
-      </ul>
-    </nav>
+    <>
+      <header className="top-bar">
+        <span className="nav-wordmark">bee hour</span>
+      </header>
+      <nav className="bottom-nav">
+        {TABS.map(t => (
+          <NavLink key={t.to} to={t.to} className={({ isActive }) => `bottom-tab${isActive ? ' bottom-tab--active' : ''}`}>
+            <span className="tab-icon">{t.icon}</span>
+            <span className="tab-label">{t.label}</span>
+          </NavLink>
+        ))}
+      </nav>
+    </>
   );
 }
