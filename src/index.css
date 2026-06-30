@@ -303,6 +303,58 @@ body {
   color: var(--text-muted);
 }
 
+/* ── REVEAL ── */
+.reveal-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,137,6,0.08) 0%, transparent 70%),
+              var(--base);
+}
+.reveal-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+  padding: 0 32px;
+}
+.reveal-spinner {
+  width: 56px;
+  height: 56px;
+  position: relative;
+}
+.spinner-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid var(--surface2);
+  border-top-color: var(--accent);
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.reveal-step {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  min-height: 2rem;
+  transition: opacity 0.3s;
+}
+.reveal-dots {
+  display: flex;
+  gap: 8px;
+}
+.reveal-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: background 0.3s;
+}
+.reveal-dot--active { background: var(--accent); }
+
 /* ── RESULT ── */
 .result-page { max-width: 520px; margin: 0 auto; padding-bottom: 60px; }
 
