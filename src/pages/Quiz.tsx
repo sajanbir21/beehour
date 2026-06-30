@@ -3,11 +3,12 @@ import { QUESTIONS, SCALE_LABELS_4 } from '../data/questions';
 import type { Answers } from '../utils/scoring';
 
 interface Props {
-  onComplete: (answers: Answers) => void;
+  onComplete: (answers: Answers, habitName: string) => void;
 }
 
 export default function Quiz({ onComplete }: Props) {
-  const [step, setStep] = useState<'intro' | number>('intro');
+  const [step, setStep] = useState<'intro' | 'habit' | number>('intro');
+  const [habitName, setHabitName] = useState('');
   const [answers, setAnswers] = useState<Answers>({});
 
   const totalQ = QUESTIONS.length;
@@ -21,13 +22,17 @@ export default function Quiz({ onComplete }: Props) {
     if (currentIdx < totalQ - 1) {
       setStep(currentIdx + 1);
     } else {
-      onComplete(updated);
+      onComplete(updated, habitName.trim() || 'your habit');
     }
   }
 
   function goBack() {
-    if (currentIdx === 0) setStep('intro');
-    else setStep(currentIdx - 1);
+    if (typeof step === 'number') {
+      if (currentIdx === 0) setStep('habit');
+      else setStep(currentIdx - 1);
+    } else if (step === 'habit') {
+      setStep('intro');
+    }
   }
 
   if (step === 'intro') {
@@ -44,8 +49,45 @@ export default function Quiz({ onComplete }: Props) {
             <span className="badge">⚡ 3 minutes</span>
             <span className="badge">🎯 Personalised result</span>
           </div>
-          <button className="btn-primary" onClick={() => setStep(0)}>Start the Habit Audit →</button>
+          <button className="btn-primary" onClick={() => setStep('habit')}>Start the Habit Audit →</button>
           <p className="quiz-intro-note">No sign-up. No email required.</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (step === 'habit') {
+    return (
+      <div className="quiz-page">
+        <div className="quiz-header">
+          <button className="back-btn" onClick={() => setStep('intro')} aria-label="Go back">←</button>
+          <div className="progress-bar-wrap">
+            <div className="progress-bar-fill" style={{ width: '0%' }} />
+          </div>
+          <span className="q-counter">0/{totalQ}</span>
+        </div>
+        <div className="quiz-body">
+          <span className="q-type-label">Before we start</span>
+          <p className="q-text">Which habit do you keep breaking?</p>
+          <div className="habit-input-wrap">
+            <input
+              className="habit-input"
+              type="text"
+              placeholder="e.g. going to the gym, studying, waking up early…"
+              value={habitName}
+              onChange={e => setHabitName(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && setStep(0)}
+              autoFocus
+              maxLength={60}
+            />
+            <p className="habit-input-note">This personalises your result. You can skip it too.</p>
+          </div>
+          <button
+            className="btn-primary"
+            onClick={() => setStep(0)}
+          >
+            {habitName.trim() ? 'Continue →' : 'Skip →'}
+          </button>
         </div>
       </div>
     );

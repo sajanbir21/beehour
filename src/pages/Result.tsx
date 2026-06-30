@@ -4,6 +4,7 @@ import type { ScoreResult } from '../utils/scoring';
 
 interface Props {
   result: ScoreResult;
+  habitName: string;
   onRetake: () => void;
 }
 
@@ -13,7 +14,7 @@ const READINESS_COPY = {
   high:   { label: 'High readiness', tip: 'You are ready. Commit to the 7-day plan and track daily.' },
 };
 
-export default function Result({ result, onRetake }: Props) {
+export default function Result({ result, habitName, onRetake }: Props) {
   const pattern = PATTERNS[result.primary];
   const secondary = result.secondary ? PATTERNS[result.secondary] : null;
   const readiness = READINESS_COPY[result.readinessLevel];
@@ -75,16 +76,19 @@ export default function Result({ result, onRetake }: Props) {
         <section className="result-fix">
           <div className="fix-header">
             <span className="fix-badge">Smallest fix today</span>
+            {habitName !== 'your habit' && (
+              <span className="fix-habit-tag">for {habitName}</span>
+            )}
           </div>
-          <p className="fix-action">{pattern.smallestFix}</p>
-          <p className="fix-detail">{pattern.fixDetail}</p>
+          <p className="fix-action">{pattern.getSmallestFix(habitName)}</p>
+          <p className="fix-detail">{pattern.getFixDetail(habitName)}</p>
         </section>
 
         {/* 7-day plan */}
         <section className="result-section">
           <h2 className="result-section-title">Your 7-day reset plan</h2>
           <ol className="seven-day-list">
-            {pattern.sevenDayPlan.map((item, i) => (
+            {pattern.getSevenDayPlan(habitName).map((item, i) => (
               <li key={i} className="seven-day-item">
                 <span className="day-num">Day {i + 1}</span>
                 <span className="day-text">{item}</span>

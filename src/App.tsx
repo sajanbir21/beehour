@@ -13,10 +13,12 @@ const REVEAL_STEPS = [
 export default function App() {
   const [phase, setPhase] = useState<'quiz' | 'reveal' | 'result'>('quiz');
   const [result, setResult] = useState<ScoreResult | null>(null);
+  const [habitName, setHabitName] = useState('your habit');
   const [revealStep, setRevealStep] = useState(0);
 
-  function handleComplete(answers: Answers) {
+  function handleComplete(answers: Answers, name: string) {
     setResult(computeScores(answers));
+    setHabitName(name);
     setRevealStep(0);
     setPhase('reveal');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -62,7 +64,7 @@ export default function App() {
   return (
     <div className="app">
       {phase === 'result' && result
-        ? <Result result={result} onRetake={handleRetake} />
+        ? <Result result={result} habitName={habitName} onRetake={handleRetake} />
         : <Quiz onComplete={handleComplete} />
       }
     </div>

@@ -132,6 +132,33 @@ body {
   padding: 5px 12px;
 }
 
+.habit-input-wrap { display: flex; flex-direction: column; gap: 8px; }
+.habit-input {
+  width: 100%;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 18px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.habit-input::placeholder { color: var(--text-muted); opacity: 0.6; }
+.habit-input:focus { border-color: var(--accent); }
+.habit-input-note { font-size: 0.8rem; color: var(--text-muted); opacity: 0.6; }
+
+.fix-habit-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--accent);
+  background: rgba(255,137,6,0.1);
+  border: 1px solid rgba(255,137,6,0.2);
+  border-radius: 100px;
+  padding: 3px 10px;
+}
+
 .quiz-intro-note {
   font-size: 0.8rem;
   color: var(--text-muted);
