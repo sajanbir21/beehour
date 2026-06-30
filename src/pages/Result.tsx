@@ -36,7 +36,13 @@ export default function Result({ result, onRetake }: Props) {
         <span className="result-eyebrow">Your Brain Pattern</span>
         <h1 className="result-name">{pattern.name}</h1>
         <p className="result-tagline">{pattern.tagline}</p>
-        <span className="result-hero-tap-hint">Tap to learn more about this pattern →</span>
+        <span className="result-hero-tap-hint">Tap to read the definition →</span>
+      </div>
+
+      <div className="result-page-cta-bar">
+        <button className="btn-primary btn-primary--full" onClick={() => document.querySelector('.result-fix')?.scrollIntoView({ behavior: 'smooth' })}>
+          Got it — show me the fix
+        </button>
       </div>
 
       <div className="result-body">
@@ -149,51 +155,16 @@ export default function Result({ result, onRetake }: Props) {
         </div>
       </div>
 
-      {/* Brain pattern modal */}
+      {/* Brain pattern definition popup */}
       {showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div className="modal-sheet" onClick={e => e.stopPropagation()} style={{ '--pattern-color': pattern.color } as React.CSSProperties}>
-            <div className="modal-handle" />
-            <button className="modal-close" onClick={() => setShowModal(false)} aria-label="Close">✕</button>
-
-            <div className="modal-hero">
-              <span className="modal-emoji">{pattern.emoji}</span>
-              <h2 className="modal-name">{pattern.name}</h2>
-              <p className="modal-tagline">{pattern.tagline}</p>
+          <div className="modal-popup" onClick={e => e.stopPropagation()} style={{ '--pattern-color': pattern.color } as React.CSSProperties}>
+            <div className="modal-popup-header">
+              <span className="modal-popup-emoji">{pattern.emoji}</span>
+              <span className="modal-popup-name">{pattern.name}</span>
+              <button className="modal-close" onClick={() => setShowModal(false)} aria-label="Close">✕</button>
             </div>
-
-            <div className="modal-body">
-              <div className="modal-section">
-                <span className="modal-label">What this means</span>
-                <p className="modal-text">{pattern.meaning}</p>
-              </div>
-
-              <div className="modal-section">
-                <span className="modal-label">Why it happens</span>
-                <p className="modal-text">{pattern.whyItHappens}</p>
-              </div>
-
-              <div className="modal-section">
-                <span className="modal-label">Signs you have this pattern</span>
-                <ul className="modal-signs">
-                  {pattern.signs.map((s, i) => (
-                    <li key={i} className="modal-sign-item">
-                      <span className="modal-dot" />
-                      {s}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="modal-section modal-example">
-                <span className="modal-label">Real-life example</span>
-                <p className="modal-example-text">"{pattern.realLifeExample}"</p>
-              </div>
-
-              <button className="btn-primary btn-primary--full" onClick={() => setShowModal(false)}>
-                Got it — show me the fix
-              </button>
-            </div>
+            <p className="modal-popup-definition">{pattern.meaning}</p>
           </div>
         </div>
       )}
