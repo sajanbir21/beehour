@@ -1,40 +1,28 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Nav from './components/Nav';
-import Today from './pages/Today';
-import Goals from './pages/Goals';
-import Habits from './pages/Habits';
-import Progress from './pages/Progress';
-import Review from './pages/Review';
-import Onboarding from './pages/Onboarding';
-import { isOnboarded } from './utils/storage';
+import { useState } from 'react';
+import Quiz from './pages/Quiz';
+import Result from './pages/Result';
+import { computeScores } from './utils/scoring';
+import type { Answers, ScoreResult } from './utils/scoring';
 
 export default function App() {
-  const [onboarded, setOnboarded] = useState(isOnboarded());
+  const [result, setResult] = useState<ScoreResult | null>(null);
 
-  useEffect(() => { setOnboarded(isOnboarded()); }, []);
+  function handleComplete(answers: Answers) {
+    setResult(computeScores(answers));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
-  if (!onboarded) {
-    return <Onboarding onDone={() => setOnboarded(true)} />;
+  function handleRetake() {
+    setResult(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   return (
-    <BrowserRouter>
-      <div className="app">
-        <Nav />
-        <main className="main">
-          <div className="container">
-            <Routes>
-              <Route path="/" element={<Navigate to="/today" replace />} />
-              <Route path="/today"    element={<Today />} />
-              <Route path="/goals"    element={<Goals />} />
-              <Route path="/habits"   element={<Habits />} />
-              <Route path="/progress" element={<Progress />} />
-              <Route path="/review"   element={<Review />} />
-            </Routes>
-          </div>
-        </main>
-      </div>
-    </BrowserRouter>
+    <div className="app">
+      {result
+        ? <Result result={result} onRetake={handleRetake} />
+        : <Quiz onComplete={handleComplete} />
+      }
+    </div>
   );
 }
