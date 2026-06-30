@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { PATTERNS } from '../data/patterns';
 import type { ScoreResult } from '../utils/scoring';
 
@@ -18,15 +18,25 @@ export default function Result({ result, onRetake }: Props) {
   const secondary = result.secondary ? PATTERNS[result.secondary] : null;
   const readiness = READINESS_COPY[result.readinessLevel];
   const shareRef = useRef<HTMLDivElement>(null);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="result-page">
-      {/* Result header */}
-      <div className="result-hero" style={{ '--pattern-color': pattern.color } as React.CSSProperties}>
+      {/* Clickable result hero → opens modal */}
+      <div
+        className="result-hero result-hero--clickable"
+        style={{ '--pattern-color': pattern.color } as React.CSSProperties}
+        onClick={() => setShowModal(true)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={e => e.key === 'Enter' && setShowModal(true)}
+        aria-label={`Learn more about ${pattern.name}`}
+      >
         <span className="result-emoji">{pattern.emoji}</span>
         <span className="result-eyebrow">Your Brain Pattern</span>
         <h1 className="result-name">{pattern.name}</h1>
         <p className="result-tagline">{pattern.tagline}</p>
+        <span className="result-hero-tap-hint">Tap to learn more about this pattern →</span>
       </div>
 
       <div className="result-body">
@@ -138,6 +148,55 @@ export default function Result({ result, onRetake }: Props) {
           <button className="btn-ghost" onClick={onRetake}>Retake the audit</button>
         </div>
       </div>
+
+      {/* Brain pattern modal */}
+      {showModal && (
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal-sheet" onClick={e => e.stopPropagation()} style={{ '--pattern-color': pattern.color } as React.CSSProperties}>
+            <div className="modal-handle" />
+            <button className="modal-close" onClick={() => setShowModal(false)} aria-label="Close">✕</button>
+
+            <div className="modal-hero">
+              <span className="modal-emoji">{pattern.emoji}</span>
+              <h2 className="modal-name">{pattern.name}</h2>
+              <p className="modal-tagline">{pattern.tagline}</p>
+            </div>
+
+            <div className="modal-body">
+              <div className="modal-section">
+                <span className="modal-label">What this means</span>
+                <p className="modal-text">{pattern.meaning}</p>
+              </div>
+
+              <div className="modal-section">
+                <span className="modal-label">Why it happens</span>
+                <p className="modal-text">{pattern.whyItHappens}</p>
+              </div>
+
+              <div className="modal-section">
+                <span className="modal-label">Signs you have this pattern</span>
+                <ul className="modal-signs">
+                  {pattern.signs.map((s, i) => (
+                    <li key={i} className="modal-sign-item">
+                      <span className="modal-dot" />
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="modal-section modal-example">
+                <span className="modal-label">Real-life example</span>
+                <p className="modal-example-text">"{pattern.realLifeExample}"</p>
+              </div>
+
+              <button className="btn-primary btn-primary--full" onClick={() => setShowModal(false)}>
+                Got it — show me the fix
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
