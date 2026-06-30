@@ -9,7 +9,7 @@ export interface Pattern {
   meaning: string;
   whyItHappens: string;
   signs: string[];
-  realLifeExample: string;
+  getRealLifeExample: (habit: string) => string;
   getSmallestFix: (habit: string) => string;
   getFixDetail: (habit: string) => string;
   getSevenDayPlan: (habit: string) => string[];
@@ -31,7 +31,8 @@ export const PATTERNS: Record<PatternKey, Pattern> = {
       'Small tasks feel bigger than they should.',
       'You need a lot of mental energy just to begin.',
     ],
-    realLifeExample: 'You plan to go to the gym after college. But after a long day, you tell yourself you\'re too tired — and scroll until midnight instead. The gym wasn\'t the problem. Your mental tank was already empty.',
+    getRealLifeExample: (habit) =>
+      `You plan to do ${habit} after a long day. But by the time you get home, your brain is already drained from decisions, stress, and noise. You tell yourself you\'ll start tomorrow — and reach for your phone instead. ${habit.charAt(0).toUpperCase() + habit.slice(1)} wasn\'t the problem. Your mental tank was already empty before you even had a chance to start.`,
     getSmallestFix: (habit) =>
       `Do the absolute minimum version of ${habit} — something so small it takes less than 2 minutes to start.`,
     getFixDetail: (habit) =>
@@ -62,7 +63,8 @@ export const PATTERNS: Record<PatternKey, Pattern> = {
       'Certain people or devices consistently break the routine.',
       'You forget to start because there\'s no trigger.',
     ],
-    realLifeExample: 'You plan to read before bed, but your phone is on the nightstand. Every single night, you end up scrolling until 1am instead. The reading habit isn\'t failing — your environment is making the wrong thing easier.',
+    getRealLifeExample: (habit) =>
+      `You genuinely want to do ${habit}, but something in your surroundings keeps pulling you away — your phone, the TV, the people around you, or even just the wrong time of day. The intent is there. The environment isn\'t set up to support it.`,
     getSmallestFix: (habit) =>
       `Change one thing in your environment that makes ${habit} easier to start.`,
     getFixDetail: (habit) =>
@@ -93,7 +95,8 @@ export const PATTERNS: Record<PatternKey, Pattern> = {
       'You lose momentum after one bad day.',
       'You aim for perfect consistency and accept nothing less.',
     ],
-    realLifeExample: 'You miss one gym day and then stop going for the entire week because the streak feels broken and starting over feels pointless. The habit didn\'t fail — the rule "all or nothing" did.',
+    getRealLifeExample: (habit) =>
+      `You miss one day of ${habit} and instead of just continuing the next day, you feel like the whole thing is ruined. So you stop entirely and tell yourself you\'ll restart on Monday. But Monday becomes next week. The habit didn\'t fail — the rule "all or nothing" did.`,
     getSmallestFix: (habit) =>
       `Use the "never miss twice" rule for ${habit} starting today.`,
     getFixDetail: (habit) =>
@@ -124,7 +127,8 @@ export const PATTERNS: Record<PatternKey, Pattern> = {
       'The habit feels fine in theory but impossible in practice.',
       'You\'ve tried the same goal multiple times and it keeps falling apart at the same point.',
     ],
-    realLifeExample: 'You commit to running 5km every morning starting Monday. By Wednesday, you\'ve skipped twice because your body wasn\'t ready and the goal felt too far away. The problem wasn\'t motivation — it was the size of the target.',
+    getRealLifeExample: (habit) =>
+      `You decide to go all-in on ${habit} — a big target, starting immediately. The first day goes well. By day three, the effort required feels too high for where you currently are. You skip. Then skip again. Then quietly abandon it. The problem wasn\'t motivation — the version of ${habit} you set was too big for where you\'re starting from.`,
     getSmallestFix: (habit) =>
       `Shrink ${habit} by 80% — then build from there.`,
     getFixDetail: (habit) =>

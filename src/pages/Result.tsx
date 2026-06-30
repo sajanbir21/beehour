@@ -69,7 +69,7 @@ export default function Result({ result, habitName, onRetake }: Props) {
         {/* Real-life example */}
         <section className="result-section result-section--example">
           <span className="example-label">Real-life example</span>
-          <p className="example-text">"{pattern.realLifeExample}"</p>
+          <p className="example-text">"{pattern.getRealLifeExample(habitName)}"</p>
         </section>
 
         {/* Smallest fix */}
