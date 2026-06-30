@@ -25,7 +25,6 @@ body {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overscroll-behavior: none;
 }
 
 .app { min-height: 100vh; width: 100%; overflow-x: hidden; }
