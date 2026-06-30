@@ -73,13 +73,25 @@ export default function Quiz({ onComplete }: Props) {
             <input
               className="habit-input"
               type="text"
-              placeholder="e.g. going to the gym, studying, waking up early…"
+              placeholder="Type your habit…"
               value={habitName}
               onChange={e => setHabitName(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && setStep(0)}
               autoFocus
               maxLength={60}
             />
+            <div className="habit-suggestions">
+              {['Going to the gym', 'Waking up early', 'Daily studying', 'Reading before bed', 'Meditation', 'Running', 'Eating healthy', 'Journaling'].map(s => (
+                <button
+                  key={s}
+                  className={`habit-chip${habitName === s ? ' habit-chip--active' : ''}`}
+                  onClick={() => setHabitName(s)}
+                  type="button"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
             <p className="habit-input-note">This personalises your result. You can skip it too.</p>
           </div>
           <button

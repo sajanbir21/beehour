@@ -149,6 +149,26 @@ body {
 .habit-input:focus { border-color: var(--accent); }
 .habit-input-note { font-size: 0.8rem; color: var(--text-muted); opacity: 0.6; }
 
+.habit-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.habit-chip {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: border-color 0.12s, color 0.12s, background 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.habit-chip:hover { border-color: var(--accent); color: var(--text-primary); }
+.habit-chip--active { border-color: var(--accent); background: rgba(255,137,6,0.1); color: var(--accent); }
+
 .fix-habit-tag {
   font-family: 'DM Mono', monospace;
   font-size: 0.7rem;
